@@ -40,6 +40,7 @@
     <string name="empty_contact">Please fill up the contact.</string>
     <string name="empty_conPassword">Please fill up the confirm password</string>
     <string name="empty_password">Please fill up the password</string>
+    <string name="registration">Registration</string>
 
 
 </resources>

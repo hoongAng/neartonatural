@@ -6,11 +6,6 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import com.example.neartonatural.R
-import com.example.neartonatural.ui.account.*
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
 import android.widget.Toast
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
@@ -38,6 +33,11 @@ class SignUpActivity : AppCompatActivity() {
     }
     private fun saveUser()
     {
+        val name = txtUsername.text.toString()
+        val contact = editTextContact.text.toString()
+        val password = txtPassword.text.toString()
+        val conPassword = txtConPassword.text.toString()
+
         if(TextUtils.isEmpty(txtUsername.text)){
             txtUsername.setError(getString(R.string.empty_username))
         }
@@ -63,16 +63,49 @@ class SignUpActivity : AppCompatActivity() {
             txtConPassword.setError(null);
         }
 
-        val name = txtUsername.text.toString()
-        val contact = editTextContact.text.toString()
-        val password = txtPassword.text.toString()
-        val conPassword = txtConPassword.text.toString()
-
-        if(contact!=null&&name!=null&&password!=null) {
+        if(name.isEmpty()) {
+            Toast.makeText(
+                applicationContext,
+                "Please fill in the name.",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+        else if(contact.isEmpty()){
+                Toast.makeText(
+                    applicationContext,
+                    "Please fill in the contact.",
+                    Toast.LENGTH_LONG
+                ).show()
+        }
+        else if(password.isEmpty()){
+                Toast.makeText(
+                    applicationContext,
+                    "Please fill in the password.",
+                    Toast.LENGTH_LONG
+                ).show()
+        }
+        else if(conPassword.isEmpty()){
+                Toast.makeText(
+                    applicationContext,
+                    "Please fill in the name.",
+                    Toast.LENGTH_LONG
+                ).show()
+        }
+        else
+        {
             if (password==conPassword) {
-                createUser(User(name, password,contact))
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+                if(password.length>5) {
+                    createUser(User(name, password, contact))
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                else{
+                    Toast.makeText(
+                        applicationContext,
+                        "Password length must more than 5.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
             else
             {
@@ -87,7 +120,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun createUser(user: User) {
         val url =
             getString(R.string.url_server) + getString(R.string.url_user_create) + "?name=" + user.name +
-                    "&contact=" + user.contact + "&password=" + user.password
+                     "&password=" + user.password +"&contact=" + user.contact
 
 
         val jsonObjectRequest = JsonObjectRequest(

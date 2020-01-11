@@ -29,8 +29,4 @@ class MySingleton constructor(context: Context) {
         requestQueue.add(req)
     }
 
-    fun cancelRequest(tag: String){
-        requestQueue.cancelAll(tag)
-    }
-
 }
