@@ -14,6 +14,7 @@ class AccountFragment : Fragment() {
 
     private lateinit var accountViewModel: AccountViewModel
 
+    /*
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,4 +29,5 @@ class AccountFragment : Fragment() {
         })
         return root
     }
+    */
 }

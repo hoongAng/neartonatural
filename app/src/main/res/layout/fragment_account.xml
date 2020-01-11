@@ -5,21 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_account"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="618dp" />
-
     <ImageView
         android:id="@+id/profileImg"
         android:layout_width="wrap_content"
@@ -58,24 +43,21 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
+        android:hint="@string/username"
         android:inputType="textPersonName"
-        android:text="@string/username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblUsername"
-        tools:text="@string/username" />
+        app:layout_constraintTop_toBottomOf="@+id/lblUsername" />
 
     <TextView
         android:id="@+id/textViewPassword"
-        android:layout_width="54dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_width="70dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="20dp"
         android:text="@string/password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.297"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtPassword"
         app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
 
     <EditText
@@ -88,8 +70,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
+        android:hint="@string/password"
         android:inputType="textPersonName|textPassword"
-        android:text="@string/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewPassword" />
@@ -117,8 +99,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
+        android:hint="@string/conPassword"
         android:inputType="textPersonName|textPassword"
-        android:text="@string/conPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewConPassword" />
@@ -144,8 +126,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
+        android:hint="@string/contact"
         android:inputType="number"
-        android:text="@string/contact"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
