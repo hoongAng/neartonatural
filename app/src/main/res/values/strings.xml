@@ -36,6 +36,10 @@
     <string name="url_server">https://angeh.000webhostapp.com/</string>
     <string name="url_user_create">api/user/create.php</string>
     <string name="error_value_required">Wrong input!!!</string>
+    <string name="empty_username">Please fill up the username.</string>
+    <string name="empty_contact">Please fill up the contact.</string>
+    <string name="empty_conPassword">Please fill up the confirm password</string>
+    <string name="empty_password">Please fill up the password</string>
 
 
 </resources>
