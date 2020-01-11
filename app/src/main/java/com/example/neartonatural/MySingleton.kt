@@ -1,7 +1,6 @@
-package com.example.myapplication
+package com.example.neartonatural
 
 import android.content.Context
-import android.nfc.Tag
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
@@ -14,7 +13,8 @@ class MySingleton constructor(context: Context) {
         private var INSTANCE: MySingleton? = null
         fun getInstance(context: Context) =
             INSTANCE ?: synchronized(this) {
-                INSTANCE ?: MySingleton(context).also {
+                INSTANCE
+                    ?: MySingleton(context).also {
                     INSTANCE = it
                 }
             }
@@ -27,6 +27,10 @@ class MySingleton constructor(context: Context) {
 
     fun <T> addToRequestQueue(req: Request<T>) {
         requestQueue.add(req)
+    }
+
+    fun cancelRequest(tag: String){
+        requestQueue.cancelAll(tag)
     }
 
 }

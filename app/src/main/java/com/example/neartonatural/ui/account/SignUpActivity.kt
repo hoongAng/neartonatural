@@ -1,6 +1,6 @@
 package com.example.neartonatural.ui.account
 
-import android.content.Intent
+import com.example.neartonatural.MySingleton
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -11,9 +11,20 @@ import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import com.example.myapplication.MySingleton
-import com.example.neartonatural.MainActivity
 import kotlinx.android.synthetic.main.fragment_account.*
+import kotlinx.android.synthetic.main.fragment_account.btnReset
+import kotlinx.android.synthetic.main.fragment_account.lblContact
+import kotlinx.android.synthetic.main.fragment_account.txtPassword
+import kotlinx.android.synthetic.main.fragment_account.txtUsername
+import com.android.volley.toolbox.Volley
+import com.android.volley.RequestQueue
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
+
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -96,8 +107,6 @@ class SignUpActivity : AppCompatActivity() {
             if (password==conPassword) {
                 if(password.length>5) {
                     createUser(User(name, password, contact))
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
                 }
                 else{
                     Toast.makeText(
@@ -118,41 +127,32 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
     private fun createUser(user: User) {
-        val url =
-            getString(R.string.url_server) + getString(R.string.url_user_create) + "?name=" + user.name +
-                     "&password=" + user.password +"&contact=" + user.contact
-
+        val url = getString(R.string.url_server) + getString(R.string.url_user_create) + "?name=" + user.name + "&password=" + user.password +"&contact=" + user.contact
 
         val jsonObjectRequest = JsonObjectRequest(
+
             Request.Method.GET, url, null,
             Response.Listener { response ->
                 // Process the JSON
-                try {
-                    if (response != null) {
+                try{
+                    if(response != null){
                         val success: String = response.get("success").toString()
 
-                        if (success.equals("1")) {
-                            Toast.makeText(
-                                applicationContext,
-                                "Record saved",
-                                Toast.LENGTH_LONG
-                            ).show()
+                        if(success.equals("1")){
+                            Toast.makeText(applicationContext, "Registration Successful", Toast.LENGTH_LONG).show()
                             //Add record to user list
-                        } else {
-                            Toast.makeText(
-                                applicationContext,
-                                "Record not saved",
-                                Toast.LENGTH_LONG
-                            ).show()
+                        }else{
+                            Toast.makeText(applicationContext, "Registration Unsuccessful", Toast.LENGTH_LONG).show()
                         }
                     }
-                } catch (e: Exception) {
+                }catch (e:Exception){
                     Log.d("Main", "Response: %s".format(e.message.toString()))
 
                 }
             },
             Response.ErrorListener { error ->
-                Log.d("Main", "Response: %s".format(error.message.toString()))
+                val a =Log.d("Main", "Response: %s".format(error.message.toString())).toString()
+
             }
         )
 
