@@ -2,6 +2,7 @@ package com.example.neartonatural.ui.account
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
@@ -10,10 +11,11 @@ import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import com.example.neartonatural.LoggedActivity
 import com.example.neartonatural.MySingleton
 import com.example.neartonatural.R
-import kotlinx.android.synthetic.main.login.*
+import com.example.neartonatural.ui.home.HomeActivity
+import kotlinx.android.synthetic.main.login.txtPassword
+import kotlinx.android.synthetic.main.login.txtUsername
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,41 +26,68 @@ class MainActivity : AppCompatActivity() {
 
         val btnSignup : Button = findViewById(R.id.btnSignup)
         val btnSignin : Button = findViewById(R.id.btnSignin)
-        val loginUser = txtUsername.text.toString()
-        val loginPassword = txtPassword.text.toString()
+        val btnReset : Button = findViewById(R.id.btnReset)
 
-        btnSignin.setOnClickListener{
-
-           val intent = Intent(this, LoggedActivity::class.java)
-            startActivity(intent)
+        btnReset.setOnClickListener{
+            txtUsername.setText("")
+            txtPassword.setText("")
         }
 
+        btnSignin.setOnClickListener{
+            validateLogin()
+        }
 
         btnSignup.setOnClickListener{
-
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
     }
-    private fun validateLogin(user: User) {
-        val url = getString(R.string.url_server) + getString(R.string.url_user_create) + "?name=" + user.name + "&password=" + user.password +"&contact=" + user.contact
+    private fun validateLogin(){
+        if(TextUtils.isEmpty(txtUsername.text)){
+            txtUsername.setError(getString(R.string.empty_username))
+        }
+        else{
+            txtUsername.setError(null)
+        }
+        if(TextUtils.isEmpty(txtPassword.text)){
+            txtPassword.setError(getString(R.string.empty_password))
+        }
+        else{
+            txtPassword.setError(null)
+        }
+        val loginUser = txtUsername.text.toString()
+        val loginPassword = txtPassword.text.toString()
+        if(loginUser.isEmpty()) {
+            Toast.makeText(
+                applicationContext,
+                "Please fill in the name.",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+        else if(loginPassword.isEmpty()){
+            Toast.makeText(
+                applicationContext,
+                "Please fill in the password.",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+        else{
+            validateUser(User(loginUser,loginPassword,""))
+        }
+    }
+    private fun validateUser(user: User) {
+        val url = getString(R.string.url_server) + getString(R.string.url_user_login) + "?name=" + user.name + "&password=" + user.password
         val jsonObjectRequest = JsonObjectRequest(
-
             Request.Method.GET, url, null,
             Response.Listener { response ->
                 // Process the JSON
                 try{
                     if(response != null){
-                        val success: String = response.get("success").toString()
-
-                        if(success.equals("1")){
-                            Toast.makeText(applicationContext, "Registration Successful", Toast.LENGTH_LONG).show()
-                            val intent = Intent(this, MainActivity::class.java)
-                            startActivity(intent)
-                            //Add record to user list
-                        }else{
-                            Toast.makeText(applicationContext, "Registration Unsuccessful", Toast.LENGTH_LONG).show()
-                        }
+                        Toast.makeText(applicationContext, "Login Successful", Toast.LENGTH_LONG).show()
+                        val id:String =response.get("id").toString()
+                        val intent = Intent(this, HomeActivity::class.java)
+                        intent.putExtra("loggedId",id)
+                        startActivity(intent)
                     }
                 }catch (e:Exception){
                     Log.d("Main", "Response: %s".format(e.message.toString()))
@@ -66,8 +95,8 @@ class MainActivity : AppCompatActivity() {
                 }
             },
             Response.ErrorListener { error ->
-                Log.i("Main", "Response: %s".format(error.message.toString())).toString()
                 Log.d("Main", "Response: %s".format(error.message.toString())).toString()
+                Toast.makeText(applicationContext, "Login Unsuccessful", Toast.LENGTH_LONG).show()
             }
         )
 

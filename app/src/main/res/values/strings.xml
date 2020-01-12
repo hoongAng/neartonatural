@@ -43,5 +43,6 @@
     <string name="registration">Registration</string>
     <string name="url_validate_Name">api/user/validateUser.php</string>
     <string name="error_value_repeated">Repeated username</string>
+    <string name="url_user_login">api/user/read_one.php</string>
 
 </resources>
