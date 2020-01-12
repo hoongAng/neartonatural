@@ -44,5 +44,12 @@
     <string name="url_validate_Name">api/user/validateUser.php</string>
     <string name="error_value_repeated">Repeated username</string>
     <string name="url_user_login">api/user/read_one.php</string>
+    <string name="favourite">Add to Favourite</string>
+    <string name="unfavourite">Remove from Favourite</string>
+    <string name="hide">Hide</string>
+    <string name="likeDesc">Like the Post</string>
+    <string name="noLike">Remove Like from the Post</string>
+    <string name="defaultLike">0</string>
+    <string name="url_post_read">api/post/readAll.php</string>
 
 </resources>
