@@ -1,6 +1,6 @@
-package com.example.neartonatural
-
+package com.example.neartonatural.ui.posting
 import android.content.Context
+import android.nfc.Tag
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
@@ -13,8 +13,7 @@ class MySingleton constructor(context: Context) {
         private var INSTANCE: MySingleton? = null
         fun getInstance(context: Context) =
             INSTANCE ?: synchronized(this) {
-                INSTANCE
-                    ?: MySingleton(context).also {
+                INSTANCE ?: MySingleton(context).also {
                     INSTANCE = it
                 }
             }

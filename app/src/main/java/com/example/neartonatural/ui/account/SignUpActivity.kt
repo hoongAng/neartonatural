@@ -1,7 +1,6 @@
 package com.example.neartonatural.ui.account
 
 import android.content.Intent
-import com.example.neartonatural.MySingleton
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils

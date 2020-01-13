@@ -1,5 +1,6 @@
 package com.example.neartonatural.ui.account
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -7,11 +8,11 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import com.example.neartonatural.MySingleton
 import com.example.neartonatural.R
 import com.example.neartonatural.ui.home.HomeActivity
 import kotlinx.android.synthetic.main.login.txtPassword
@@ -22,7 +23,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
-
+        val toolbar: Toolbar? = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         val btnSignup : Button = findViewById(R.id.btnSignup)
         val btnSignin : Button = findViewById(R.id.btnSignin)
@@ -87,6 +89,11 @@ class MainActivity : AppCompatActivity() {
                         val id:String =response.get("id").toString()
                         val intent = Intent(this, HomeActivity::class.java)
                         intent.putExtra("loggedId",id)
+                        val sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE)
+                        val editor=sharedPreferences.edit()
+                        editor.putString("userID",id)
+                        editor.commit()
+
                         startActivity(intent)
                     }
                 }catch (e:Exception){
