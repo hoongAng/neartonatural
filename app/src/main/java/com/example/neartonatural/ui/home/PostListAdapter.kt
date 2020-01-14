@@ -3,7 +3,6 @@ package com.example.neartonatural.ui.home
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.SurfaceHolder
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -17,7 +16,6 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.neartonatural.R
 import com.example.neartonatural.ui.account.MySingleton
-import kotlinx.android.synthetic.main.fragment_account.*
 
 class PostListAdapter internal constructor(context: Context, id: String) :
     RecyclerView.Adapter<PostListAdapter.UserViewHolder>() {
@@ -29,7 +27,7 @@ class PostListAdapter internal constructor(context: Context, id: String) :
     private var likeCount:Int=0
 
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val userNameTextView: TextView = itemView.findViewById(R.id.userName)
+        val userNameTextView: TextView = itemView.findViewById(R.id.userName_post)
         val postDescription: TextView = itemView.findViewById(R.id.postContent)
         val likeCountView: TextView = itemView.findViewById(R.id.likeCount)
         val createdAtView: TextView = itemView.findViewById(R.id.postedAt)
@@ -41,12 +39,13 @@ class PostListAdapter internal constructor(context: Context, id: String) :
         val unlike: ImageButton = itemView.findViewById((R.id.unlikeBtn))
         val fav: ImageButton = itemView.findViewById((R.id.favBtn))
         val unfav: ImageButton = itemView.findViewById((R.id.unfavBtn))
-        val hide: Button =itemView.findViewById(R.id.btnHide)
+        val hide: Button =itemView.findViewById(R.id.btnUnHide)
+        val likes:TextView=itemView.findViewById(R.id.likeCount)
         hide.setOnClickListener{
             itemView.visibility=View.GONE
             hided()
         }
-        setButtonFunc(like, unlike, fav, unfav)
+        setButtonFunc(like, unlike, fav, unfav,likes)
         return UserViewHolder(itemView)
     }
 
@@ -71,7 +70,8 @@ class PostListAdapter internal constructor(context: Context, id: String) :
         like: ImageButton,
         unlike: ImageButton,
         fav: ImageButton,
-        unfav: ImageButton
+        unfav: ImageButton,
+        txtLike:TextView
     ) {
         like.visibility = View.GONE
         fav.visibility = View.GONE
@@ -89,11 +89,13 @@ class PostListAdapter internal constructor(context: Context, id: String) :
             unlike.visibility = View.VISIBLE
             like.visibility = View.GONE
             decreaseLike()
+            txtLike.setText(likeCount.toString())
         }
         unlike.setOnClickListener {
             unlike.visibility = View.GONE
             like.visibility = View.VISIBLE
             increaseLike()
+            txtLike.setText(likeCount.toString())
         }
     }
 
@@ -196,7 +198,6 @@ class PostListAdapter internal constructor(context: Context, id: String) :
                 Log.d("Main", "Response: %s".format(error.message.toString())).toString()
             }
         )
-
         //Volley request policy, only one time request
         jsonObjectRequest.retryPolicy = DefaultRetryPolicy(
             DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,

@@ -81,7 +81,6 @@ class UpdateAccount : AppCompatActivity(){
                     ).show()
                 }
             }
-
         }
         private fun updateUser(user: User) {
             val url =

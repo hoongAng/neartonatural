@@ -15,6 +15,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.neartonatural.R
 import com.example.neartonatural.ui.home.HomeActivity
+import com.example.neartonatural.ui.posting.HidedActivity
 import kotlinx.android.synthetic.main.login.txtPassword
 import kotlinx.android.synthetic.main.login.txtUsername
 

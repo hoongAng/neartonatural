@@ -19,31 +19,31 @@ import com.example.neartonatural.ui.home.PostListAdapter
 import org.json.JSONArray
 import org.json.JSONObject
 
-class HidedActivity : AppCompatActivity() {
-    lateinit var hideList: ArrayList<Hide>
-    lateinit var adapter: HidedListAdapter
+class FavouriteActivity : AppCompatActivity() {
+    lateinit var favList: ArrayList<Favourite>
+    lateinit var adapter: FavListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE)
         val id =sharedPreferences.getString("userID","")
         //Initialise variables and UI
-        hideList = ArrayList()
+        favList = ArrayList()
         setContentView(R.layout.activity_hide)
-        adapter = HidedListAdapter(this,id)
-        adapter.setHide(hideList)
+        adapter = FavListAdapter(this,id)
+        adapter.setFavourite(favList)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview_hide)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-        showHide(id)
+        showFavourite(id)
 
     }
 
-    private fun showHide(id:String) {
+    private fun showFavourite(id:String) {
         val url = getString(R.string.url_server) + getString(R.string.url_hide_read) + "?id="+id
 
-        hideList.clear()
+        favList.clear()
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
             Response.Listener { response ->
@@ -58,12 +58,12 @@ class HidedActivity : AppCompatActivity() {
 
                         for (i in 0..size - 1) {
                             var jsonUser: JSONObject = jsonArray.getJSONObject(i)
-                            var hide: Hide = Hide(
+                            var favourite: Favourite = Favourite(
                                 jsonUser.getString("name"),
                                 jsonUser.getString("postId"),
                                 jsonUser.getString("postDesc")
                             )
-                            hideList.add(hide)
+                            favList.add(favourite)
                         }
 
                         // progress.visibility = View.GONE
@@ -88,7 +88,7 @@ class HidedActivity : AppCompatActivity() {
         )
 
         // Access the RequestQueue through your singleton class.
-        jsonObjectRequest.tag = HidedActivity.TAG
+        jsonObjectRequest.tag = FavouriteActivity.TAG
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
     companion object {

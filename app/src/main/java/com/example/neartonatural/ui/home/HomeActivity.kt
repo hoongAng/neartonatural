@@ -19,6 +19,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.neartonatural.R
+import com.example.neartonatural.ui.posting.HidedActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.add_post.*
 import org.json.JSONArray
@@ -40,13 +41,17 @@ class HomeActivity : AppCompatActivity() {
         adapter.setPost(postList)
 
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview_home)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         syncContact()
 
         btnAdd.setOnClickListener{
             post()
+        }
+        btnTest.setOnClickListener{
+            intent = Intent(this, HidedActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -105,7 +110,7 @@ class HomeActivity : AppCompatActivity() {
             )
 
             // Access the RequestQueue through your singleton class.
-            com.example.neartonatural.ui.account.MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+            MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
 
 
     }

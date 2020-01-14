@@ -7,36 +7,53 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.HomeActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-    <include
-        layout="@layout/content_home"
-        android:background="#8BC34A" />
+        <include
+            android:id="@+id/include"
+            layout="@layout/content_home"
+            android:layout_width="390dp"
+            android:layout_height="625dp"
+            android:background="#8BC34A"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.476"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.981" />
 
-    <SearchView
-        android:id="@+id/searchPost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|end"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.418"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <SearchView
+            android:id="@+id/searchPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnTest"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add" />
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add"
+            app:layout_constraintBottom_toBottomOf="@+id/btnTest"
+            app:layout_constraintEnd_toStartOf="@+id/btnTest"
+            app:layout_constraintTop_toTopOf="@+id/btnTest" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <Button
+            android:id="@+id/btnTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="200dp"
+            android:layout_marginLeft="200dp"
+            android:text="@string/change"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/searchPost" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

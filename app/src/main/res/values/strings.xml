@@ -52,7 +52,6 @@
     <string name="defaultLike">0</string>
     <string name="url_post_read">api/post/readAll.php</string>
     <string name="url_favourite_create">api/favourite/create.php</string>
-    <string name="url_favourite_delete">api/favourite.php</string>
     <string name="url_like_inc">api/post/updateLike.php</string>
     <string name="url_hide_create">api/hide/create.php</string>
     <string name="url_hide_delete">api/hide/delete.php</string>
@@ -65,5 +64,10 @@
     <string name="post">Post</string>
     <string name="url_post_create">api/post/create.php</string>
     <string name="empty_desc">Please input post text.</string>
-
+    <string name="hided">Hided Post</string>
+    <string name="hidedDesc">This is hided post, you can unhide it by clicking on the unhide button</string>
+    <string name="unhide">Unhide</string>
+    <string name="url_hide_read">api/hide/read.php</string>
+    <string name="toDisplay">TO DISPLAY</string>
+    <string name="url_favourite_delete">api/favourite/delete.php</string>
 </resources>

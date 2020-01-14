@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#77C593"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#77C593">
+
+        <TextView
+            android:id="@+id/userName_hide"
+            style="@style/user_title"
+            android:layout_width="194dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="#77C593"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:fontFamily="casual"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.291" />
+
+        <Button
+            android:id="@+id/btnUnHide"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="right"
+            android:layout_marginStart="113dp"
+            android:layout_marginLeft="113dp"
+            android:background="#4AC535"
+            android:text="@string/unhide"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/userName_hide"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/Desc_hide"
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnUnHide"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userName_hide"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/block"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#8FE9BF" />
+
+</LinearLayout>
