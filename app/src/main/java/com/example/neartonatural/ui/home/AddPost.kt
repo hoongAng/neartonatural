@@ -15,27 +15,34 @@ import com.example.neartonatural.R
 import com.example.neartonatural.ui.account.MainActivity
 import com.example.neartonatural.ui.account.MySingleton
 import com.example.neartonatural.ui.account.User
+import kotlinx.android.synthetic.main.activity_fav.*
 import kotlinx.android.synthetic.main.add_post.*
 import kotlinx.android.synthetic.main.fragment_account.*
 
 class AddPost: AppCompatActivity()  {
-    val sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE)
-    val id =sharedPreferences.getString("userID","")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_post)
-
-        addpost()
+        val sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE)
+        val id =sharedPreferences.getString("userID","")
+        post.setOnClickListener{
+            addpost(id)
+        }
+        Cancel.setOnClickListener{
+            intent=Intent(this,HomeActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
-    fun addpost(){
+    private fun addpost(id:String){
         if(TextUtils.isEmpty(addPostText.text)){
             addPostText.setError(getString(R.string.empty_username))
         }
         else{
             addPostText.setError(null)
-            createPost(addPostText.toString(),id)
+            createPost(addPostText.text.toString(),id)
         }
     }
         private fun createPost(desc:String,id:String) {

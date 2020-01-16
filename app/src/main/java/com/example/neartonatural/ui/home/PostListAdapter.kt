@@ -222,6 +222,7 @@ class PostListAdapter internal constructor(context: Context, id: String) :
                         val success: String = response.get("success").toString()
                         if (success.equals("1")) {
                             Toast.makeText(context1, "Liked!!!", Toast.LENGTH_SHORT).show()
+                            likeCount=0
                             //Add record to user list
                         }
                     }
@@ -261,42 +262,7 @@ class PostListAdapter internal constructor(context: Context, id: String) :
                         val success: String = response.get("success").toString()
                         if (success.equals("1")) {
                             Toast.makeText(context1, "Unliked!!!", Toast.LENGTH_SHORT).show()
-                            //Add record to user list
-                        }
-                    }
-                } catch (e: Exception) {
-                    Log.d("Main", "Response: %s".format(e.message.toString()))
-                }
-            },
-            Response.ErrorListener { error ->
-                Log.i("Main", "Response: %s".format(error.message.toString())).toString()
-                Log.d("Main", "Response: %s".format(error.message.toString())).toString()
-            }
-        )
-
-        //Volley request policy, only one time request
-        jsonObjectRequest.retryPolicy = DefaultRetryPolicy(
-            DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
-            0, //no retry
-            1f
-        )
-
-        // Access the RequestQueue through your singleton class.
-        MySingleton.getInstance(context1).addToRequestQueue(jsonObjectRequest)
-
-    }
-    private fun noHide(){
-        val url =
-            context1.getString(R.string.url_server) + context1.getString(R.string.url_hide_delete) + "?id=" + id + "&postId="+postID
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.GET, url, null,
-            Response.Listener { response ->
-                // Process the JSON
-                try {
-                    if (response != null) {
-                        val success: String = response.get("success").toString()
-                        if (success.equals("1")) {
-                            Toast.makeText(context1, "Removed Favourite!!!", Toast.LENGTH_SHORT).show()
+                            likeCount=0
                             //Add record to user list
                         }
                     }

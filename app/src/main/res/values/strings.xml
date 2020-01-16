@@ -70,4 +70,19 @@
     <string name="url_hide_read">api/hide/read.php</string>
     <string name="toDisplay">TO DISPLAY</string>
     <string name="url_favourite_delete">api/favourite/delete.php</string>
+    <string name="fav">Favourite Post</string>
+    <string name="favDesc">This is your favourite post, you can remove it by tapping the favourite button on the top right of the post.</string>
+    <string name="clear">Clear All</string>
+    <string name="tapMe">TAP TO DISPLAY</string>
+    <string name="favourtie">My Favourite</string>
+    <string name="newPost">Add Post</string>
+    <string name="Profile">My Profile</string>
+    <string name="update">Update</string>
+    <string name="logOut">Log Out</string>
+    <string name="help">Help or FAQ</string>
+    <string name="helpDesc">This page is mostly the question asked by user and reply from developer. You can also post your question in the text box below</string>
+    <string name="KeyIn">Tap to Key In Question</string>
+    <string name="url_create_help">api/helps/create.php</string>
+    <string name="url_read_help">api/helps/read.php</string>
+    <string name="url_favourite_read">api/favourite/read.php</string>
 </resources>

@@ -29,11 +29,11 @@ class FavouriteActivity : AppCompatActivity() {
         val id =sharedPreferences.getString("userID","")
         //Initialise variables and UI
         favList = ArrayList()
-        setContentView(R.layout.activity_hide)
+        setContentView(R.layout.activity_fav)
         adapter = FavListAdapter(this,id)
         adapter.setFavourite(favList)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview_hide)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview_fav)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         showFavourite(id)
@@ -41,7 +41,7 @@ class FavouriteActivity : AppCompatActivity() {
     }
 
     private fun showFavourite(id:String) {
-        val url = getString(R.string.url_server) + getString(R.string.url_hide_read) + "?id="+id
+        val url = getString(R.string.url_server) + getString(R.string.url_favourite_read) + "?id="+id
 
         favList.clear()
         val jsonObjectRequest = JsonObjectRequest(
@@ -71,7 +71,6 @@ class FavouriteActivity : AppCompatActivity() {
                 } catch (e: Exception) {
                     Log.d("Main", "Response: %s".format(e.message.toString()))
                     //progress.visibility = View.GONE
-
                 }
             },
             Response.ErrorListener { error ->

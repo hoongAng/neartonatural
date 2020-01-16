@@ -11,66 +11,72 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FBFFA7"
-        tools:context=".ui.posting.FavouriteActivity">
+        android:background="#236DB4"
+        tools:context=".ui.help.HelpActivity">
 
-        <include layout="@layout/content_fav" />
+        <include
+            layout="@layout/content_help"
+            android:background="#236DB4" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="240dp">
+            android:layout_height="197dp"
+            android:background="#236DB4">
 
             <TextView
-                android:id="@+id/titleFav"
+                android:id="@+id/titleHelp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|top"
                 android:layout_marginTop="32dp"
-                android:text="@string/fav"
-                android:textColor="#E6894E"
+                android:text="@string/help"
+                android:textColor="#002A96"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:fontFamily="serif-monospace"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.111"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txtFavDesc"
-                android:layout_width="395dp"
-                android:layout_height="42dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/favDesc"
+                android:id="@+id/textHelp"
+                android:layout_width="367dp"
+                android:layout_height="53dp"
+                android:text="@string/helpDesc"
                 android:textSize="15sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleFav" />
+                app:layout_constraintTop_toBottomOf="@+id/titleHelp" />
 
             <EditText
-                android:id="@+id/tap"
+                android:id="@+id/questioning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="22dp"
                 android:ems="10"
-                android:hint="@string/tapMe"
+                android:hint="@string/KeyIn"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtFavDesc" />
+                app:layout_constraintTop_toBottomOf="@+id/textHelp" />
 
             <Button
-                android:id="@+id/ClearAll"
+                android:id="@+id/btnPost"
                 style="@android:style/Widget.Material.Light.Button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#F80B0B"
-                android:text="@string/clear"
+                android:layout_height="45dp"
+                android:layout_marginEnd="88dp"
+                android:layout_marginBottom="26dp"
+                android:background="#130BF8"
+                android:text="@string/post"
                 android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tap"
-                app:layout_constraintTop_toBottomOf="@+id/txtFavDesc" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/questioning"
+                app:layout_constraintTop_toBottomOf="@+id/textHelp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

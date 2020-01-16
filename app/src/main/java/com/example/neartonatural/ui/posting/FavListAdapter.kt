@@ -13,7 +13,6 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.neartonatural.R
 import com.example.neartonatural.ui.account.MySingleton
-import com.example.neartonatural.ui.home.Post
 
 class FavListAdapter internal constructor(context: Context, id: String) :
     RecyclerView.Adapter<FavListAdapter.UserViewHolder>() {
@@ -24,16 +23,17 @@ class FavListAdapter internal constructor(context: Context, id: String) :
     private var postid =""
 
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val userNameTextView: TextView = itemView.findViewById(R.id.userName_fav)
-        val shortDescription: TextView = itemView.findViewById(R.id.Desc_fav)
+        val userNameTextView: TextView = itemView.findViewById(R.id.txtFavName)
+        val shortDescription: TextView = itemView.findViewById(R.id.txtFavDescription)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val itemView = inflater.inflate(R.layout.hide_record, parent, false)
-        val unhide: Button = itemView.findViewById(R.id.btnUnHide)
-        unhide.setOnClickListener {
+        val itemView = inflater.inflate(R.layout.fav_record, parent, false)
+        val unfav: ImageView = itemView.findViewById(R.id.favPageStar )
+
+        unfav.setOnClickListener {
             itemView.visibility = View.GONE
-            unhides()
+            unfav()
         }
         return UserViewHolder(itemView)
     }
@@ -52,9 +52,9 @@ class FavListAdapter internal constructor(context: Context, id: String) :
 
     override fun getItemCount() = favourite.size
 
-    private fun unhides(){
+    private fun unfav(){
         val url =
-            context1.getString(R.string.url_server) + context1.getString(R.string.url_hide_delete) + "?id=" + id + "&postId="+postid
+            context1.getString(R.string.url_server) + context1.getString(R.string.url_favourite_delete) + "?id=" + id + "&postId="+postid
         val jsonObjectRequest = JsonObjectRequest(
 
             Request.Method.GET, url, null,
@@ -64,7 +64,7 @@ class FavListAdapter internal constructor(context: Context, id: String) :
                     if (response != null) {
                         val success: String = response.get("success").toString()
                         if (success.equals("1")) {
-                            Toast.makeText(context1, "Successful Removed from Hide Post", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context1, "Successful Removed from Favourite Post", Toast.LENGTH_SHORT).show()
                             //Add record to user list
                         }
                     }

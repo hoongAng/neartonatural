@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
-        val toolbar: Toolbar? = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
 
         val btnSignup : Button = findViewById(R.id.btnSignup)
         val btnSignin : Button = findViewById(R.id.btnSignin)

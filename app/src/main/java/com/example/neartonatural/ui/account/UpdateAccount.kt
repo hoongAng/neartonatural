@@ -21,32 +21,47 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.example.neartonatural.R
 import com.example.neartonatural.ui.home.HomeActivity
 import kotlinx.android.synthetic.main.fragment_account.*
+import kotlinx.android.synthetic.main.fragment_account.txtPassword
+import kotlinx.android.synthetic.main.fragment_account.txtUsername
+import kotlinx.android.synthetic.main.profile.*
 
 class UpdateAccount : AppCompatActivity(){
+    var idHere = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile)
-
+        val sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE)
+        val id =sharedPreferences.getString("userID","")
+        idHere=id
+        btnChange.setOnClickListener{
+            update()
+        }
+        btnLogout.setOnClickListener{
+            val editor=sharedPreferences.edit()
+            editor.clear()
+            Toast.makeText(this,"Logout Successful!!!", Toast.LENGTH_LONG)
+            intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
     }
     private fun update() {
-        val name = txtUsername.text.toString()
-        val contact = editTextContact.text.toString()
-        val password = txtPassword.text.toString()
-        val conPassword = txtConPassword.text.toString()
+        val name = txtUsername2.text.toString()
+        val contact = txtContact.text.toString()
+        val password = txtPassword2.text.toString()
 
-        if (TextUtils.isEmpty(txtUsername.text)) {
+        if (TextUtils.isEmpty(txtUsername2.text)) {
             txtUsername.setError(getString(R.string.empty_username))
         } else {
             txtUsername.setError(null)
             validateUser()
         }
-        if (TextUtils.isEmpty(editTextContact.text)) {
+        if (TextUtils.isEmpty(txtContact.text)) {
             editTextContact.setError(getString(R.string.empty_contact))
         } else {
             editTextContact.setError(null)
         }
-        if (TextUtils.isEmpty(txtPassword.text)) {
+        if (TextUtils.isEmpty(txtPassword2.text)) {
             txtPassword.setError(getString(R.string.empty_password))
         } else {
             txtPassword.setError(null)
@@ -84,7 +99,7 @@ class UpdateAccount : AppCompatActivity(){
         }
         private fun updateUser(user: User) {
             val url =
-                getString(R.string.url_server) + getString(R.string.url_user_update) + "?name=" + user.name + "&password=" + user.password + "&contact=" + user.contact
+                getString(R.string.url_server) + getString(R.string.url_user_update) + "?name=" + user.name + "&password=" + user.password + "&contact=" + user.contact+"&id="+idHere
             val jsonObjectRequest = JsonObjectRequest(
 
                 Request.Method.GET, url, null,

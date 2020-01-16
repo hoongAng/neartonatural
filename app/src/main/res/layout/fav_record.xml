@@ -4,60 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#77C593"
+    android:background="#FDA50F"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#77C593">
+        android:layout_width="match_parent"
+        android:layout_height="135dp"
+        android:background="#FCE205">
 
         <TextView
-            android:id="@+id/userName_fav"
+            android:id="@+id/txtFavName"
             style="@style/user_title"
             android:layout_width="194dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:background="#77C593"
+            android:background="#FFC30B"
             android:textSize="20sp"
             android:textStyle="bold|italic"
             app:fontFamily="casual"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.291" />
-
-        <Button
-            android:id="@+id/btnUnFav"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_gravity="right"
-            android:layout_marginStart="113dp"
-            android:layout_marginLeft="113dp"
-            android:background="#4AC535"
-            android:text="@string/unhide"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/userName_fav"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/Desc_fav"
+            android:id="@+id/txtFavDescription"
             android:layout_width="308dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:background="#FFC30B"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnUnHide"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userName_fav"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/txtFavName"
+            app:layout_constraintVertical_bias="0.276" />
+
+        <ImageView
+            android:id="@+id/favPageStar"
+            android:layout_width="85dp"
+            android:layout_height="0dp"
+            android:background="#FFC30B"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
+
+        <ImageView
+            android:id="@+id/favPageDarkStar"
+            android:layout_width="85dp"
+            android:layout_height="93dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/btn_star_big_off" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -65,6 +63,6 @@
         android:id="@+id/block"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="#8FE9BF" />
+        android:background="#C49102" />
 
 </LinearLayout>

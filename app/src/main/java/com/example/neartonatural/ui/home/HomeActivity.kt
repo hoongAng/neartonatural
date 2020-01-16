@@ -6,10 +6,10 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.text.TextUtils
 import android.util.Log
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +19,10 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.neartonatural.R
+import com.example.neartonatural.ui.account.UpdateAccount
+import com.example.neartonatural.ui.help.HelpActivity
+import com.example.neartonatural.ui.posting.Favourite
+import com.example.neartonatural.ui.posting.FavouriteActivity
 import com.example.neartonatural.ui.posting.HidedActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.add_post.*
@@ -46,11 +50,23 @@ class HomeActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         syncContact()
 
-        btnAdd.setOnClickListener{
+        btnFav.setOnClickListener{
             post()
         }
-        btnTest.setOnClickListener{
-            intent = Intent(this, HidedActivity::class.java)
+        btnAdd.setOnClickListener{
+            intent = Intent(this, AddPost::class.java)
+            startActivity(intent)
+        }
+        btnFav.setOnClickListener{
+            intent = Intent(this, FavouriteActivity::class.java)
+            startActivity(intent)
+        }
+        btnHelp.setOnClickListener{
+            intent = Intent(this, HelpActivity::class.java)
+            startActivity(intent)
+        }
+        btnProfile.setOnClickListener{
+            intent = Intent(this, UpdateAccount::class.java)
             startActivity(intent)
         }
     }
