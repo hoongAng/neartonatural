@@ -222,7 +222,6 @@ class PostListAdapter internal constructor(context: Context, id: String) :
                         val success: String = response.get("success").toString()
                         if (success.equals("1")) {
                             Toast.makeText(context1, "Liked!!!", Toast.LENGTH_SHORT).show()
-                            likeCount=0
                             //Add record to user list
                         }
                     }
@@ -262,7 +261,6 @@ class PostListAdapter internal constructor(context: Context, id: String) :
                         val success: String = response.get("success").toString()
                         if (success.equals("1")) {
                             Toast.makeText(context1, "Unliked!!!", Toast.LENGTH_SHORT).show()
-                            likeCount=0
                             //Add record to user list
                         }
                     }

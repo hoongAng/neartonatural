@@ -61,6 +61,10 @@ class HomeActivity : AppCompatActivity() {
             intent = Intent(this, FavouriteActivity::class.java)
             startActivity(intent)
         }
+        btnHide.setOnClickListener{
+            intent = Intent(this, HidedActivity::class.java)
+            startActivity(intent)
+        }
         btnHelp.setOnClickListener{
             intent = Intent(this, HelpActivity::class.java)
             startActivity(intent)

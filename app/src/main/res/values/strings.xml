@@ -85,4 +85,6 @@
     <string name="url_create_help">api/helps/create.php</string>
     <string name="url_read_help">api/helps/read.php</string>
     <string name="url_favourite_read">api/favourite/read.php</string>
+    <string name="url_favourite_deleteAll">api/favourite/deleteAll.php</string>
+    <string name="url_hide_deleteAll">api/hide/deleteAll.php</string>
 </resources>

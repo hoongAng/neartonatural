@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,6 +40,12 @@ class HidedActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         showHide(id)
 
+        val clearAllHide:Button=findViewById(R.id.button2)
+        clearAllHide.setOnClickListener{
+            clearAllHided(id)
+            intent = Intent(this,this::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun showHide(id:String) {
@@ -89,6 +97,49 @@ class HidedActivity : AppCompatActivity() {
 
         // Access the RequestQueue through your singleton class.
         jsonObjectRequest.tag = HidedActivity.TAG
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+    }
+    private fun clearAllHided(id:String){
+        val url = getString(R.string.url_server) + getString(R.string.url_hide_deleteAll) + "?id="+id
+
+        hideList.clear()
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            Response.Listener { response ->
+                // Process the JSON
+                        try {
+                            if (response != null) {
+                                val success: String = response.get("success").toString()
+                                if (success.equals("1")) {
+                                    Toast.makeText(this, "Successful Removed All record from Hide Post", Toast.LENGTH_SHORT).show()
+                                    //Add record to user list
+                                }
+                                else
+                                {
+                                    Toast.makeText(this, "There is no record found!!!!", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+
+                } catch (e: Exception) {
+                    Log.d("Main", "Response: %s".format(e.message.toString()))
+                    //progress.visibility = View.GONE
+                }
+            },
+            Response.ErrorListener { error ->
+                Log.d("Main", "Response: %s".format(error.message.toString()))
+                //progress.visibility = View.GONE
+            }
+        )
+
+        //Volley request policy, only one time request
+        jsonObjectRequest.retryPolicy = DefaultRetryPolicy(
+            DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
+            0, //no retry
+            1f
+        )
+
+        // Access the RequestQueue through your singleton class.
+        jsonObjectRequest.tag = FavouriteActivity.TAG
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
     companion object {

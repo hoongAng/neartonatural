@@ -43,7 +43,6 @@ class UpdateAccount : AppCompatActivity(){
             intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
     }
     private fun update() {
         val name = txtUsername2.text.toString()
@@ -51,20 +50,20 @@ class UpdateAccount : AppCompatActivity(){
         val password = txtPassword2.text.toString()
 
         if (TextUtils.isEmpty(txtUsername2.text)) {
-            txtUsername.setError(getString(R.string.empty_username))
+            txtUsername2.setError(getString(R.string.empty_username))
         } else {
-            txtUsername.setError(null)
+            txtUsername2.setError(null)
             validateUser()
         }
         if (TextUtils.isEmpty(txtContact.text)) {
-            editTextContact.setError(getString(R.string.empty_contact))
+            txtContact.setError(getString(R.string.empty_contact))
         } else {
-            editTextContact.setError(null)
+            txtContact.setError(null)
         }
         if (TextUtils.isEmpty(txtPassword2.text)) {
-            txtPassword.setError(getString(R.string.empty_password))
+            txtPassword2.setError(getString(R.string.empty_password))
         } else {
-            txtPassword.setError(null)
+            txtPassword2.setError(null)
         }
 
         if (name.isEmpty()) {
@@ -100,6 +99,7 @@ class UpdateAccount : AppCompatActivity(){
         private fun updateUser(user: User) {
             val url =
                 getString(R.string.url_server) + getString(R.string.url_user_update) + "?name=" + user.name + "&password=" + user.password + "&contact=" + user.contact+"&id="+idHere
+            println(url)
             val jsonObjectRequest = JsonObjectRequest(
 
                 Request.Method.GET, url, null,
@@ -150,7 +150,7 @@ class UpdateAccount : AppCompatActivity(){
         }
     private fun validateUser(){
         val url =
-            getString(R.string.url_server) + getString(R.string.url_validate_Name) + "?name=" + txtUsername.text.toString()
+            getString(R.string.url_server) + getString(R.string.url_validate_Name) + "?name=" + txtUsername2.text.toString()
         val jsonObjectRequest = JsonObjectRequest(
 
             Request.Method.GET, url, null,

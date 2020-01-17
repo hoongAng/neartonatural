@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun validateUser(user: User) {
         val url = getString(R.string.url_server) + getString(R.string.url_user_login) + "?name=" + user.name + "&password=" + user.password
-        val jsonObjectRequest = JsonObjectRequest(
+            val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
             Response.Listener { response ->
                 // Process the JSON
