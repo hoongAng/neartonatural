@@ -50,9 +50,6 @@ class HomeActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         syncContact()
 
-        btnFav.setOnClickListener{
-            post()
-        }
         btnAdd.setOnClickListener{
             intent = Intent(this, AddPost::class.java)
             startActivity(intent)
@@ -75,65 +72,6 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun post() {
-        val sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE)
-        val id = sharedPreferences.getString("userID", "")
-        setContentView(R.layout.add_post)
-        post.setOnClickListener {
-            val desc:EditText= findViewById(R.id.addPostText)
-            if (TextUtils.isEmpty(addPostText.text)) {
-                addPostText.setError(getString(R.string.empty_desc))
-            } else {
-                addPostText.setError(null)
-            }
-            println(desc)
-            println(id)
-            createPost(desc.text.toString(), id)
-        }
-    }
-    private fun createPost(desc:String,id:String) {
-            val url = getString(R.string.url_server) + getString(R.string.url_post_create) + "?postDesc=" + desc +  "&id="+id
-            val jsonObjectRequest = JsonObjectRequest(
-
-            Request.Method.GET, url, null,
-            Response.Listener { response ->
-                    // Process the JSON
-                    try{
-                        if(response != null){
-
-                            val success: String = response.get("success").toString()
-
-                            if(success.equals("1")){
-                                Toast.makeText(applicationContext, "Posted Successful", Toast.LENGTH_LONG).show()
-                                val intent = Intent(this, HomeActivity::class.java)
-                                startActivity(intent)
-                                //Add record to user list
-                            }else{
-                                Toast.makeText(applicationContext, "Post Unsuccessful", Toast.LENGTH_LONG).show()
-                            }
-                        }
-                    }catch (e:Exception){
-                        Log.d("Main", "Response: %s".format(e.message.toString()))
-                    }
-                },
-                Response.ErrorListener { error ->
-                    Log.i("Main", "Response: %s".format(error.message.toString())).toString()
-                    Log.d("Main", "Response: %s".format(error.message.toString())).toString()
-                }
-            )
-
-            //Volley request policy, only one time request
-            jsonObjectRequest.retryPolicy = DefaultRetryPolicy(
-                DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
-                0, //no retry
-                1f
-            )
-
-            // Access the RequestQueue through your singleton class.
-            MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
-
-
-    }
     private fun syncContact() {
         val url = getString(R.string.url_server) + getString(R.string.url_post_read)
 
